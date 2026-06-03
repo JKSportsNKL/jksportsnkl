@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JK Sports Namakkal</title>
+  <meta name="description" content="Authorized Yonex dealer in Namakkal. Custom jerseys & sports gear. Est. 2021" />
+  <meta property="og:title" content="JK Sports Namakkal" />
+  <meta property="og:description" content="Authorized Yonex dealer in Namakkal. Custom jerseys & sports gear. Est. 2021" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.10);
+      --accent: #f5c842;
+      --accent-dim: rgba(245,200,66,0.15);
+      --text: #ffffff;
+      --text-muted: rgba(255,255,255,0.70);
+      --text-dim: rgba(255,255,255,0.50);
+      --green: #16a34a;
+      --font-heading: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --radius-lg: 1.25rem;
+      --radius-xl: 1.75rem;
+      --shadow-card: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: .4;
+    }
+
+    /* ─── UTILITIES ─── */
+    .container { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
+    .glass {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .card {
+      background: rgba(0,0,0,0.22);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem;
+    }
+    .tag {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .3em;
+      color: rgba(245,200,66,.9);
+    }
+    h1,h2,h3 { font-family: var(--font-heading); line-height: 1.05; }
+    a { text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,15,.85);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 3.5rem; padding: 0 1.25rem;
+      max-width: 72rem; margin: 0 auto;
+    }
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      letter-spacing: .05em;
+      color: var(--text);
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a {
+      font-size: .875rem; font-weight: 500;
+      color: var(--text-muted);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent); color: #000;
+      font-size: .8rem; font-weight: 600;
+      padding: .45rem 1rem;
+      border-radius: 999px;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: #fff; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex; align-items: center;
+      padding: 4rem 1rem 3rem;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: -1;
+    }
+    .hero-bg-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: .18;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,10,15,.95) 30%, rgba(10,10,15,.6) 70%, rgba(10,10,15,.85) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 72rem; margin: 0 auto; width: 100%;
+    }
+    .hero h1 {
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      line-height: 1;
+      max-width: 18ch;
+    }
+    .hero h1 .accent-line { color: var(--accent); }
+    .hero-sub {
+      margin-top: 1.25rem;
+      max-width: 38ch;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: .5rem;
+      margin-top: 1.5rem;
+    }
+    .badge {
+      font-size: .75rem; font-weight: 500;
+      padding: .3rem .8rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+    }
+    .hero-btns {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      margin-top: 2rem;
+    }
+    .btn-primary {
+      background: var(--accent); color: #000;
+      font-weight: 600; font-size: .9rem;
+      padding: .75rem 1.5rem;
+      border-radius: 999px;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: #fff; transform: translateY(-1px); }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.05);
+      color: var(--text); font-weight: 500; font-size: .9rem;
+      padding: .75rem 1.5rem;
+      border-radius: 999px;
+      transition: border-color .2s, background .2s, transform .15s;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.1); transform: translateY(-1px); }
+    .btn-green {
+      background: var(--green); color: #fff; font-weight: 600; font-size: .9rem;
+      padding: .75rem 1.5rem;
+      border-radius: 999px;
+      transition: background .2s, transform .15s;
+    }
+    .btn-green:hover { background: #15803d; transform: translateY(-1px); }
+    .hero-scroll {
+      margin-top: 3rem;
+      display: flex; align-items: center; gap: .5rem;
+      color: var(--text-dim); font-size: .75rem; letter-spacing: .1em;
+      text-transform: uppercase;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+
+    /* ─── STATS ─── */
+    .stats-section { padding: 2rem 1rem; }
+    .stats-bar {
+      border-radius: var(--radius-xl);
+      padding: 1.25rem 1.5rem;
+      display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+      box-shadow: var(--shadow-card);
+    }
+    .stat-item {
+      flex: 1; min-width: 120px;
+      text-align: center;
+      padding: .75rem;
+    }
+    .stat-item + .stat-item { border-left: 1px solid var(--border); }
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: .8rem;
+      color: var(--text-muted);
+      margin-top: .25rem;
+    }
+
+    /* ─── SECTIONS ─── */
+    section.content { padding: 3rem 1rem; }
+
+    /* ─── TWO-COL LAYOUT ─── */
+    .two-col {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .two-col { grid-template-columns: 1.1fr 0.9fr; }
+      .two-col.flip { grid-template-columns: 0.9fr 1.1fr; }
+    }
+
+    /* ─── IMG STACK ─── */
+    .img-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .img-frame {
+      position: relative;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: rgba(255,255,255,.03);
+    }
+    .img-frame img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .img-frame:hover img { transform: scale(1.04); }
+    .img-stack .img-frame:last-child { transform: translateY(2rem); }
+
+    /* ─── SPORT CARDS ─── */
+    .sports-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: .75rem;
+    }
+    @media (min-width: 500px) { .sports-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 768px) { .sports-grid { grid-template-columns: repeat(5, 1fr); } }
+    @media (min-width: 1024px) { .sports-grid { grid-template-columns: repeat(6, 1fr); } }
+
+    .sport-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .2s, border-color .2s;
+    }
+    .sport-card:hover { transform: translateY(-3px); border-color: rgba(245,200,66,.4); }
+    .sport-card-img {
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+    .sport-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .sport-card-name {
+      padding: .5rem .6rem;
+      font-size: .78rem; font-weight: 500;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* ─── BRANDS ─── */
+    .brands-row {
+      display: flex; gap: 1rem; overflow-x: auto;
+      padding-bottom: .5rem;
+      scrollbar-width: none;
+    }
+    .brands-row::-webkit-scrollbar { display: none; }
+    .brand-chip {
+      flex-shrink: 0;
+      height: 3rem; min-width: 8rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: .5rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-weight: 500; font-size: .85rem;
+      letter-spacing: .1em;
+      color: var(--text-muted);
+      filter: grayscale(1);
+      opacity: .65;
+      transition: filter .2s, opacity .2s;
+    }
+    .brand-chip:hover { filter: grayscale(0); opacity: 1; }
+
+    /* ─── REVIEWS ─── */
+    .reviews-grid {
+      display: grid; gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) { .reviews-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .review-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.2);
+      padding: 1rem;
+      transition: transform .2s, border-color .2s;
+    }
+    .review-card:hover { transform: translateY(-3px); border-color: rgba(245,200,66,.3); }
+    .review-header { display: flex; justify-content: space-between; align-items: flex-start; }
+    .review-name { font-weight: 600; font-size: .9rem; }
+    .review-sport { font-size: .75rem; color: var(--text-dim); margin-top: .1rem; }
+    .verified {
+      background: rgba(22,163,74,.15);
+      color: #86efac;
+      font-size: .7rem;
+      padding: .2rem .6rem;
+      border-radius: 999px;
+    }
+    .stars { color: #facc15; font-size: .9rem; margin-top: .6rem; }
+    .review-text { margin-top: .6rem; font-size: .85rem; color: var(--text-muted); }
+
+    /* ─── JERSEY SECTION ─── */
+    .jersey-box {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 1.75rem;
+    }
+    .jersey-features { margin-top: 1rem; display: flex; flex-direction: column; gap: .5rem; }
+    .jersey-features li { list-style: none; font-size: .9rem; color: var(--text-muted); }
+    .jersey-steps {
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      margin-top: 1.25rem;
+    }
+    .step {
+      background: rgba(0,0,0,.3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: .9rem;
+      text-align: center;
+    }
+    .step-num {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+    .step-label { font-size: .8rem; color: var(--text-muted); margin-top: .25rem; }
+
+    /* ─── MILESTONES ─── */
+    .milestones-grid {
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      margin-top: 1rem;
+    }
+
+    /* ─── GALLERY ─── */
+    .gallery-filters {
+      display: flex; gap: .5rem; flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: .8rem; font-weight: 500;
+      padding: .35rem .9rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--accent-dim);
+      border-color: rgba(245,200,66,.4);
+      color: var(--accent);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .gallery-item {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      transition: transform .2s;
+    }
+    .gallery-item:hover { transform: scale(1.02); }
+    .gallery-item.hidden { display: none; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ─── LIGHTBOX ─── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,.92);
+      display: none; align-items: center; justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw; max-height: 85vh;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+    }
+    .lightbox-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      font-size: 2rem; color: var(--text);
+      cursor: pointer; line-height: 1;
+      background: rgba(255,255,255,.1);
+      width: 2.5rem; height: 2.5rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+    }
+
+    /* ─── MAP / CONTACT ─── */
+    .contact-box {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.3);
+      padding: 1.75rem 2rem;
+      margin-top: 2.5rem;
+    }
+    .contact-box iframe {
+      width: 100%; height: 320px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      margin-top: 1.25rem;
+    }
+    .contact-btns { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+    .btn-route {
+      border: 1px solid rgba(245,200,66,.4);
+      background: rgba(245,200,66,.1);
+      color: var(--accent); font-weight: 500; font-size: .9rem;
+      padding: .75rem 1.5rem;
+      border-radius: 999px;
+      transition: background .2s, color .2s;
+    }
+    .btn-route:hover { background: var(--accent); color: #000; }
+
+    /* ─── ACHIEVEMENTS ─── */
+    .achievements-grid {
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      margin-top: 1.5rem;
+    }
+    .achievement {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 1rem;
+      font-size: .85rem;
+      color: var(--text-muted);
+      transition: transform .2s, border-color .2s;
+    }
+    .achievement:hover { transform: translateY(-3px); border-color: rgba(245,200,66,.35); }
+
+    /* ─── FAQ ACCORDION ─── */
+    .faq-list { margin-top: 1rem; display: flex; flex-direction: column; gap: .5rem; }
+    .faq-item {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.2);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%; text-align: left;
+      background: none; border: none;
+      color: var(--text); font-family: var(--font-body);
+      font-size: .9rem; font-weight: 500;
+      padding: 1rem;
+      cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem;
+    }
+    .faq-question:hover { color: var(--accent); }
+    .faq-arrow { font-size: 1rem; transition: transform .25s; flex-shrink: 0; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      font-size: .85rem; color: var(--text-muted);
+      padding: 0 1rem;
+      transition: max-height .3s ease, padding .3s;
+    }
+    .faq-item.open .faq-answer { max-height: 12rem; padding: 0 1rem 1rem; }
+
+    /* ─── ABOUT ABOUT IMAGE PAIR ─── */
+    .about-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      padding: 2rem;
+      box-shadow: var(--shadow-card);
+    }
+    .about-features {
+      display: grid; gap: .75rem;
+      grid-template-columns: 1fr;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 640px) { .about-features { grid-template-columns: 1fr 1fr; } }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      background: rgba(0,0,0,.4);
+      padding: 2.5rem 1rem;
+      margin-top: 4rem;
+    }
+    .footer-inner {
+      max-width: 72rem; margin: 0 auto;
+      display: flex; flex-wrap: wrap; gap: 2rem;
+      justify-content: space-between; align-items: flex-start;
+    }
+    .footer-brand { max-width: 24rem; }
+    .footer-brand-name { font-family: var(--font-heading); font-size: 1.6rem; }
+    .footer-brand-name span { color: var(--accent); }
+    .footer-desc { font-size: .85rem; color: var(--text-dim); margin-top: .5rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .footer-links a { font-size: .85rem; color: var(--text-muted); transition: color .2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-heading { font-size: .75rem; text-transform: uppercase; letter-spacing: .15em; color: var(--accent); margin-bottom: .75rem; }
+    .footer-bottom {
+      max-width: 72rem; margin: 2rem auto 0;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem;
+      font-size: .75rem; color: var(--text-dim);
+    }
+
+    /* ─── FLOATING WHATSAPP ─── */
+    .wa-float {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+      display: flex; align-items: center; justify-content: center;
+      width: 3.25rem; height: 3.25rem;
+      border-radius: 50%;
+      background: #25d366;
+      box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      color: #fff;
+      font-size: 1.6rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.55); }
+
+    /* ─── SCROLL TO TOP ─── */
+    #scrollTop {
+      position: fixed; bottom: 5.5rem; right: 1.5rem; z-index: 200;
+      width: 2.5rem; height: 2.5rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+      color: var(--text); font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s, transform .2s;
+    }
+    #scrollTop.visible { opacity: 1; pointer-events: auto; }
+    #scrollTop:hover { transform: translateY(-2px); background: rgba(255,255,255,.15); }
+
+    /* ─── MOBILE NAV ─── */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      gap: .25rem;
+      padding: .75rem 1.25rem 1rem;
+      border-top: 1px solid var(--border);
+      background: rgba(10,10,15,.95);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-size: .95rem; color: var(--text-muted);
+      padding: .5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .mobile-nav a:hover { color: var(--text); }
+
+    /* ─── SECTION DIVIDERS ─── */
+    .section-intro { margin-bottom: 2rem; }
+    .section-intro h1,
+    .section-intro h2 { margin-top: .5rem; }
+    .section-intro p { margin-top: .75rem; color: var(--text-muted); max-width: 40ch; }
+
+    /* ─── PAGE SECTIONS (anchors) ─── */
+    .page-section { padding: 4rem 1rem; }
+
+    /* ─── FADE-IN ANIMATION ─── */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .img-stack .img-frame:last-child { transform: none; }
+      .stat-item + .stat-item { border-left: none; border-top: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">JK <span>Sports</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#sports">Sports</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/919786122444?text=Hi%20JK%20Sports%2C%20I%20want%20to%20inquire" class="nav-cta">WhatsApp Us</a>
+    <div class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#about">About</a>
+    <a href="#sports">Sports</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+    <a href="https://wa.me/919786122444" style="color:var(--accent)">WhatsApp Us</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img class="hero-bg-img"
+      src="https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-49qqqxm18m.jpg"
+      alt="JK Sports Namakkal store" loading="eager" />
+  </div>
+  <div class="hero-content container">
+    <div class="tag fade-up">Authorized Yonex Dealer · Est. 2021</div>
+    <h1 class="fade-up" style="transition-delay:.1s">
+      Your <span class="accent-line">Game.</span><br>Our Gear.
+    </h1>
+    <p class="hero-sub fade-up" style="transition-delay:.2s">
+      Namakkal's trusted sports shop for equipment, apparel, and fully custom team jerseys since 2021.
+    </p>
+    <div class="hero-badges fade-up" style="transition-delay:.3s">
+      <span class="badge">🏅 Yonex Authorized</span>
+      <span class="badge">🎽 Custom Jerseys</span>
+      <span class="badge">⭐ 5-Star Rated</span>
+      <span class="badge">📍 Namakkal</span>
+    </div>
+    <div class="hero-btns fade-up" style="transition-delay:.4s">
+      <a href="https://wa.me/919786122444?text=Hi%20JK%20Sports%2C%20I%20want%20to%20check%20availability%20for%20sports%20gear" class="btn-primary">Check Availability</a>
+      <a href="#gallery" class="btn-outline">View Gallery</a>
+    </div>
+    <div class="hero-scroll fade-up" style="transition-delay:.5s">
+      <span>↓</span> <span>scroll to explore</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ STATS ═══════════════ -->
+<section class="stats-section">
+  <div class="container">
+    <div class="glass stats-bar">
+      <div class="stat-item fade-up">
+        <div class="stat-number" data-target="1000">0</div>
+        <div class="stat-label">Customers Served</div>
+      </div>
+      <div class="stat-item fade-up" style="transition-delay:.1s">
+        <div class="stat-number" data-target="10">0</div>
+        <div class="stat-label">Sports Covered</div>
+      </div>
+      <div class="stat-item fade-up" style="transition-delay:.2s">
+        <div class="stat-number" data-target="4">0</div>
+        <div class="stat-label">Years of Trust</div>
+      </div>
+      <div class="stat-item fade-up" style="transition-delay:.3s">
+        <div class="stat-number">5 ★</div>
+        <div class="stat-label">JustDial Rating</div>
+      </div>
+      <div class="stat-item fade-up" style="transition-delay:.4s">
+        <div class="stat-number">1</div>
+        <div class="stat-label">Authorized Yonex Partner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SHOP HIGHLIGHTS ═══════════════ -->
+<section class="page-section" id="shop">
+  <div class="container">
+    <div class="two-col">
+      <div class="fade-up">
+        <div class="tag">Shop Highlights</div>
+        <h2 style="font-size:clamp(2rem,5vw,3rem);margin-top:.5rem;">Everything from match gear to school team essentials</h2>
+        <p style="margin-top:1rem;color:var(--text-muted);">The store is stocked for players, coaches, and team managers who need reliable products, quick service, and custom jersey support in one place.</p>
+        <div class="hero-btns" style="margin-top:1.5rem;">
+          <a href="https://wa.me/919786122444?text=Hi%20JK%20Sports%2C%20I%20want%20to%20check%20availability%20for%20sports%20gear" class="btn-primary">Check Availability</a>
+          <a href="#gallery" class="btn-outline">View Gallery</a>
+        </div>
+      </div>
+      <div class="img-stack fade-up" style="transition-delay:.15s;">
+        <div class="img-frame">
+          <img src="https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-xzgfv5zd2t.jpg" alt="Badminton rackets and shuttles" loading="lazy" />
+        </div>
+        <div class="img-frame">
+          <img src="https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-49qqqxm18m.jpg" alt="Custom sports apparel" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SPORTS WE COVER ═══════════════ -->
+<section class="page-section" id="sports" style="padding-top:0;">
+  <div class="container">
+    <h2 class="fade-up" style="font-size:1.75rem;margin-bottom:1.25rem;">Sports We Cover</h2>
+    <div class="sports-grid" id="sportsGrid">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CUSTOM JERSEYS ═══════════════ -->
+<section class="page-section" id="jerseys">
+  <div class="container">
+    <div class="jersey-box fade-up">
+      <h2 style="font-size:1.75rem;">🎽 Custom Jersey Service</h2>
+      <div class="two-col" style="margin-top:1rem;align-items:start;">
+        <div>
+          <p style="color:var(--text-muted);">We design and deliver custom jerseys for all sports — perfect for school teams, college tournaments, corporate events, and local clubs.</p>
+          <ul class="jersey-features">
+            <li>✅ Name &amp; Number printing</li>
+            <li>✅ Your team logo / school crest</li>
+            <li>✅ Choice of fabric &amp; fit</li>
+            <li>✅ Any colour combination</li>
+            <li>✅ Minimum order: 10 jerseys</li>
+          </ul>
+          <div class="jersey-steps">
+            <div class="step"><div class="step-num">01</div><div class="step-label">Send your design idea on WhatsApp</div></div>
+            <div class="step"><div class="step-num">02</div><div class="step-label">We share a digital mockup</div></div>
+            <div class="step"><div class="step-num">03</div><div class="step-label">Confirm size chart &amp; quantities</div></div>
+            <div class="step"><div class="step-num">04</div><div class="step-label">Receive finished jerseys</div></div>
+          </div>
+          <div style="margin-top:1.25rem;">
+            <a href="https://wa.me/919786122444?text=Hi%20JK%20Sports%2C%20I%20want%20to%20order%20custom%20jerseys" class="btn-green">Start Your Jersey Order on WhatsApp</a>
+          </div>
+        </div>
+        <div class="img-frame" style="aspect-ratio:16/10;border-radius:var(--radius-lg);">
+          <img src="https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-yonex-04zxd27huf.jpg" alt="Custom jersey printing" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ BUYING TIPS / FAQ ═══════════════ -->
+<section class="page-section" style="padding-top:0;">
+  <div class="container">
+    <div class="two-col flip" style="align-items:start;">
+      <div class="img-frame fade-up" style="aspect-ratio:16/11;border-radius:var(--radius-xl);">
+        <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1200&q=80" alt="Football boots and training gear" loading="lazy" />
+      </div>
+      <div class="fade-up" style="border-radius:var(--radius-xl);border:1px solid var(--border);background:rgba(255,255,255,.04);padding:1.75rem;transition-delay:.1s">
+        <div class="tag">Buying Tips</div>
+        <h2 style="font-size:1.5rem;margin-top:.5rem;">Get the right gear the first time</h2>
+        <p style="margin-top:.75rem;color:var(--text-muted);font-size:.9rem;">Tap a question for expert guidance on choosing the right sports equipment.</p>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question">How to choose the right cricket bat <span class="faq-arrow">▾</span></button>
+            <div class="faq-answer">Check the bat profile, pick the correct size for your height, and choose lighter willow if you want faster pickup and control.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">How to pick your first badminton racket <span class="faq-arrow">▾</span></button>
+            <div class="faq-answer">For beginners, a light, even-balance racket is easier to swing and control. Ask for grip size and string tension advice in-store.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">What to look for in football boots <span class="faq-arrow">▾</span></button>
+            <div class="faq-answer">Match your sole plate to the surface, ensure the fit is snug but not tight, and choose boots that support your play style.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ TRUSTED BRANDS ═══════════════ -->
+<section class="page-section" style="padding-top:0;">
+  <div class="container">
+    <h3 style="font-size:1.25rem;font-family:var(--font-heading);margin-bottom:1rem;" class="fade-up">Trusted Brands</h3>
+    <div class="brands-row fade-up">
+      <div class="brand-chip">Yonex</div>
+      <div class="brand-chip">SG</div>
+      <div class="brand-chip">SS</div>
+      <div class="brand-chip">Nivia</div>
+      <div class="brand-chip">Cosco</div>
+      <div class="brand-chip">DSC</div>
+      <div class="brand-chip">Vector X</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ REVIEWS ═══════════════ -->
+<section class="page-section" style="padding-top:0;">
+  <div class="container">
+    <h3 style="font-size:1.25rem;font-family:var(--font-heading);margin-bottom:1rem;" class="fade-up">What Our Customers Say</h3>
+    <div class="reviews-grid">
+      <div class="review-card fade-up">
+        <div class="review-header">
+          <div><div class="review-name">Rajan M.</div><div class="review-sport">Cricket</div></div>
+          <span class="verified">Verified</span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Best cricket equipment shop in Namakkal. Got my SG bat at a great price!</p>
+      </div>
+      <div class="review-card fade-up" style="transition-delay:.1s">
+        <div class="review-header">
+          <div><div class="review-name">Priya K.</div><div class="review-sport">Badminton</div></div>
+          <span class="verified">Verified</span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Yonex rackets and shuttles always in stock. Very helpful staff.</p>
+      </div>
+      <div class="review-card fade-up" style="transition-delay:.2s">
+        <div class="review-header">
+          <div><div class="review-name">Coach Senthil</div><div class="review-sport">Football</div></div>
+          <span class="verified">Verified</span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Ordered custom jerseys for our whole team. Excellent quality and fast delivery!</p>
+      </div>
+      <div class="review-card fade-up" style="transition-delay:.05s">
+        <div class="review-header">
+          <div><div class="review-name">Fathima B.</div><div class="review-sport">Jerseys</div></div>
+          <span class="verified">Verified</span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">The print quality and fit were both excellent for our college event.</p>
+      </div>
+      <div class="review-card fade-up" style="transition-delay:.15s">
+        <div class="review-header">
+          <div><div class="review-name">Arun S.</div><div class="review-sport">Fitness</div></div>
+          <span class="verified">Verified</span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">They guided me on the right grip and gym accessories without pushing anything.</p>
+      </div>
+      <div class="review-card fade-up" style="transition-delay:.25s">
+        <div class="review-header">
+          <div><div class="review-name">Local Club Captain</div><div class="review-sport">Team Orders</div></div>
+          <span class="verified">Verified</span>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Fast response on WhatsApp and bulk pricing made the process easy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section class="page-section" id="about">
+  <div class="container">
+    <div class="about-card fade-up">
+      <div class="two-col">
+        <div>
+          <div class="tag">About JK Sports</div>
+          <h1 style="font-size:clamp(2rem,5vw,3.5rem);margin-top:.5rem;">Born from a Passion for Sport</h1>
+          <p style="margin-top:1rem;color:var(--text-muted);">JK Sports was founded in 2021 with a simple mission — to make quality sports equipment accessible to every athlete in Namakkal and surrounding areas. From school students to professional players, we serve everyone with the same dedication and expertise.</p>
+          <div class="about-features">
+            <div class="card">🏅 <strong>Authorized Dealer</strong> — Official Yonex authorized retailer</div>
+            <div class="card">💬 <strong>Expert Guidance</strong> — Staff who play the sports they sell</div>
+            <div class="card">🎽 <strong>Custom Jerseys</strong> — Personalized jerseys for teams &amp; individuals</div>
+            <div class="card">💰 <strong>Best Prices</strong> — Competitive pricing, no compromise on quality</div>
+          </div>
+        </div>
+        <div class="img-stack">
+          <div class="img-frame">
+            <img src="https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-sx2ilpgj5z.jpg" alt="Inside JK Sports" loading="lazy" />
+          </div>
+          <div class="img-frame">
+            <img src="https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-ywphv6kkzg.jpg" alt="Team community" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <h2 style="font-size:1.5rem;margin-top:2.5rem;" class="fade-up">Milestones</h2>
+      <div class="milestones-grid">
+        <div class="card fade-up" style="font-size:.85rem;color:var(--text-muted);">2021 — JK Sports founded in Namakkal</div>
+        <div class="card fade-up" style="font-size:.85rem;color:var(--text-muted);transition-delay:.05s">2022 — Crossed 200+ happy customers</div>
+        <div class="card fade-up" style="font-size:.85rem;color:var(--text-muted);transition-delay:.1s">2023 — Became authorized Yonex dealer</div>
+        <div class="card fade-up" style="font-size:.85rem;color:var(--text-muted);transition-delay:.15s">2024 — Launched custom jersey service for all sports</div>
+        <div class="card fade-up" style="font-size:.85rem;color:var(--text-muted);transition-delay:.2s">2025 — 1000+ customers served across Namakkal district</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ GALLERY ═══════════════ -->
+<section class="page-section" id="gallery">
+  <div class="container">
+    <div class="section-intro fade-up">
+      <div class="tag">Gallery &amp; Reviews</div>
+      <h1 style="font-size:clamp(2rem,5vw,3.5rem);margin-top:.5rem;">Our Story in Photos</h1>
+      <p>Browse the shop, custom jersey work, and customer moments.</p>
+    </div>
+
+    <div class="gallery-filters fade-up">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="shop">Shop</button>
+      <button class="filter-btn" data-filter="jerseys">Jerseys</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- filled by JS -->
+    </div>
+
+    <div class="achievements-grid">
+      <div class="achievement fade-up">🏆 Authorized Yonex Dealer</div>
+      <div class="achievement fade-up" style="transition-delay:.05s">⭐ 5-Star Rated on JustDial</div>
+      <div class="achievement fade-up" style="transition-delay:.1s">🎽 Custom Jersey Partner for Local Teams</div>
+      <div class="achievement fade-up" style="transition-delay:.15s">📅 Est. 2021 — 4 Years of Trust</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTACT / MAP ═══════════════ -->
+<section class="page-section" id="contact" style="padding-bottom:2rem;">
+  <div class="container">
+    <div class="contact-box fade-up">
+      <h2 style="font-size:1.75rem;">Visit Us</h2>
+      <p style="margin-top:.75rem;color:var(--text-muted);">Periyanna Gounder Plaza, Poyyerikarai Road, Namakkal-637001</p>
+      <p style="margin-top:.35rem;color:var(--text-dim);font-size:.9rem;">Ground Floor, 65C5+6RM Periyanna Gounder Plazza, Poiyerrikarai Rd, S P Pudur, Thillaipuram, Namakkal, Tamil Nadu 637001</p>
+      <p style="margin-top:.35rem;color:var(--text-dim);font-size:.9rem;">Mon–Sat, 9:00 AM – 8:00 PM</p>
+      <iframe
+        title="JK Sports Namakkal Location Map"
+        src="https://www.google.com/maps?q=Ground+Floor,+65C5%2B6RM+Periyanna+Gounder+Plazza,+Poiyerrikarai+Rd,+S+P+Pudur,+Thillaipuram,+Namakkal,+Tamil+Nadu+637001&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      <div class="contact-btns">
+        <a href="tel:+919786122444" class="btn-outline">📞 Call Us</a>
+        <a href="https://wa.me/919786122444?text=Hi%20JK%20Sports%2C%20I%20want%20to%20visit%20the%20store" class="btn-green">WhatsApp Us</a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Ground+Floor,+65C5%2B6RM+Periyanna+Gounder+Plazza,+Poiyerrikarai+Rd,+S+P+Pudur,+Thillaipuram,+Namakkal,+Tamil+Nadu+637001" target="_blank" rel="noreferrer" class="btn-route">Get Route</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-name">JK <span>Sports</span></div>
+      <p class="footer-desc">Authorized Yonex dealer in Namakkal. Custom jerseys &amp; sports gear. Est. 2021.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Quick Links</div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#sports">Sports</a></li>
+        <li><a href="#jerseys">Custom Jerseys</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:+919786122444">+91 97861 22444</a></li>
+        <li><a href="https://wa.me/919786122444">WhatsApp</a></li>
+        <li style="color:var(--text-dim);font-size:.85rem;">Namakkal, Tamil Nadu</li>
+        <li style="color:var(--text-dim);font-size:.85rem;">Mon–Sat 9AM–8PM</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 JK Sports Namakkal. All rights reserved.</span>
+    <span>Authorized Yonex Dealer</span>
+  </div>
+</footer>
+
+<!-- ═══════════════ FLOATING BUTTONS ═══════════════ -->
+<a href="https://wa.me/919786122444" class="wa-float" title="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<button id="scrollTop" aria-label="Scroll to top">↑</button>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="lightboxClose">✕</span>
+  <img id="lightboxImg" src="" alt="Gallery image" />
+</div>
+
+<script>
+  /* ─── DATA ─── */
+  const sports = [
+    { name: 'Cricket',      img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-hn65ksaxy5-250.jpg' },
+    { name: 'Badminton',    img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-xzgfv5zd2t.jpg' },
+    { name: 'Football',     img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-yonex-lfcz4wfcs4.jpg' },
+    { name: 'Basketball',   img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-49qqqxm18m.jpg' },
+    { name: 'Volleyball',   img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-sswa0ninem.jpg' },
+    { name: 'Kabaddi',      img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-sx2ilpgj5z.jpg' },
+    { name: 'Athletics',    img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-ho421thi1a-250.jpg' },
+    { name: 'Fitness/Gym',  img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-uthpgg3eei.jpg' },
+    { name: 'Table Tennis', img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-o7b38v0zqp.jpg' },
+    { name: 'Chess/Carrom', img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-e33la66fwc-250.jpg' }
+  ];
+
+  const gallery = [
+    { alt: 'Shop Interior',             src: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-3dgct7wxzn.jpg',                                                                                       cat: 'shop' },
+    { alt: 'Badminton Equipment',       src: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-xzgfv5zd2t.jpg',                          cat: 'shop' },
+    { alt: 'Sports Collection Display', src: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-49qqqxm18m.jpg',                          cat: 'shop' },
+    { alt: 'Custom Jerseys',            src: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-k18t7b8t4m.jpg',                          cat: 'jerseys' },
+    { alt: 'Yonex Jerseys Display',     src: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-yonex-04zxd27huf.jpg',                    cat: 'jerseys' },
+    { alt: 'Football Equipment',        src: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-yonex-lfcz4wfcs4.jpg',                    cat: 'shop' },
+    { alt: 'Premium Yonex Collection',  src: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-sx2ilpgj5z.jpg',                                                                                       cat: 'shop' },
+    { alt: 'Team Sports Apparel',       src: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-ywphv6kkzg.jpg',                                                                                       cat: 'jerseys' },
+    { alt: 'Sports Gear Selection',     src: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-sswa0ninem.jpg',                                                                                       cat: 'shop' },
+  ];
+
+  /* ─── BUILD SPORT CARDS ─── */
+  const sportsGrid = document.getElementById('sportsGrid');
+  sports.forEach(s => {
+    sportsGrid.innerHTML += `
+      <div class="sport-card">
+        <div class="sport-card-img"><img src="${s.img}" alt="${s.name}" loading="lazy" /></div>
+        <div class="sport-card-name">${s.name}</div>
+      </div>`;
+  });
+
+  /* ─── BUILD GALLERY ─── */
+  const galleryGrid = document.getElementById('galleryGrid');
+  gallery.forEach((g, i) => {
+    galleryGrid.innerHTML += `
+      <div class="gallery-item fade-up" data-cat="${g.cat}" style="transition-delay:${(i % 4) * 0.05}s">
+        <img src="${g.src}" alt="${g.alt}" loading="lazy" />
+      </div>`;
+  });
+
+  /* ─── GALLERY FILTER ─── */
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        item.classList.toggle('hidden', filter !== 'all' && item.dataset.cat !== filter);
+      });
+    });
+  });
+
+  /* ─── LIGHTBOX ─── */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      lightboxImg.src = item.querySelector('img').src;
+      lightbox.classList.add('open');
+    });
+  });
+  document.getElementById('lightboxClose').addEventListener('click', () => lightbox.classList.remove('open'));
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+
+  /* ─── FAQ ACCORDION ─── */
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  /* ─── HAMBURGER ─── */
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => mobileNav.classList.toggle('open'));
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+  /* ─── SCROLL TO TOP ─── */
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* ─── FADE-UP INTERSECTION OBSERVER ─── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  /* ─── STAT COUNTER ANIMATION ─── */
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        if (!target) return;
+        let current = 0;
+        const step = target / 50;
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          el.textContent = Math.floor(current) + (target >= 1000 ? '+' : '');
+          if (current >= target) clearInterval(timer);
+        }, 30);
+        statObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-target]').forEach(el => statObserver.observe(el));
+</script>
+</body>
+</html>
