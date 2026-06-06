@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JK Sports Namakkal</title>
+  <title>JK Sports Namakkal | Your Game. Our Gear.</title>
   <meta name="description" content="Authorized Yonex dealer in Namakkal. Custom jerseys & sports gear. Est. 2021" />
   <meta property="og:title" content="JK Sports Namakkal" />
   <meta property="og:description" content="Authorized Yonex dealer in Namakkal. Custom jerseys & sports gear. Est. 2021" />
@@ -14,15 +14,16 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0a0f;
+      --bg: #060a0f;
       --surface: rgba(255,255,255,0.04);
       --border: rgba(255,255,255,0.10);
-      --accent: #f5c842;
-      --accent-dim: rgba(245,200,66,0.15);
+      --accent: #e8000d;
+      --accent2: #39d353;
+      --accent-dim: rgba(232,0,13,0.15);
       --text: #ffffff;
       --text-muted: rgba(255,255,255,0.70);
       --text-dim: rgba(255,255,255,0.50);
-      --green: #16a34a;
+      --green: #39d353;
       --font-heading: 'Bebas Neue', sans-serif;
       --font-body: 'DM Sans', sans-serif;
       --radius-lg: 1.25rem;
@@ -41,13 +42,38 @@
       overflow-x: hidden;
     }
 
-    /* ─── NOISE OVERLAY ─── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 0; opacity: .4;
+    /* ─── SPORTS CANVAS BACKGROUND ─── */
+    #sportsBg {
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none;
     }
+
+    /* ─── LOGO STYLES ─── */
+    .nav-logo-img {
+      height: 2.2rem;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(232,0,13,0.5));
+      transition: filter .3s;
+    }
+    .nav-logo:hover .nav-logo-img {
+      filter: drop-shadow(0 0 14px rgba(57,211,83,0.7));
+    }
+    .nav-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    /* noise handled by canvas bg */
+
+    /* ─── ENSURE ALL CONTENT IS ABOVE CANVAS ─── */
+    nav, section, footer,
+    .wa-float, #scrollTop, .lightbox {
+      position: relative;
+      z-index: 2;
+    }
+    nav { z-index: 100; }
 
     /* ─── UTILITIES ─── */
     .container { max-width: 72rem; margin: 0 auto; padding: 0 1rem; }
@@ -66,7 +92,7 @@
       font-size: .75rem;
       text-transform: uppercase;
       letter-spacing: .3em;
-      color: rgba(245,200,66,.9);
+      color: var(--accent);
     }
     h1,h2,h3 { font-family: var(--font-heading); line-height: 1.05; }
     a { text-decoration: none; }
@@ -99,13 +125,13 @@
     }
     .nav-links a:hover { color: var(--text); }
     .nav-cta {
-      background: var(--accent); color: #000;
+      background: var(--accent); color: #fff;
       font-size: .8rem; font-weight: 600;
       padding: .45rem 1rem;
       border-radius: 999px;
       transition: background .2s;
     }
-    .nav-cta:hover { background: #fff; }
+    .nav-cta:hover { background: var(--accent2); color: #000; }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
     .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
 
@@ -128,7 +154,7 @@
     .hero-bg::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(10,10,15,.95) 30%, rgba(10,10,15,.6) 70%, rgba(10,10,15,.85) 100%);
+      background: linear-gradient(135deg, rgba(6,10,15,.97) 25%, rgba(6,10,15,.65) 65%, rgba(6,10,15,.88) 100%);
     }
     .hero-content {
       position: relative; z-index: 1;
@@ -163,13 +189,13 @@
       margin-top: 2rem;
     }
     .btn-primary {
-      background: var(--accent); color: #000;
+      background: var(--accent); color: #fff;
       font-weight: 600; font-size: .9rem;
       padding: .75rem 1.5rem;
       border-radius: 999px;
       transition: background .2s, transform .15s;
     }
-    .btn-primary:hover { background: #fff; transform: translateY(-1px); }
+    .btn-primary:hover { background: var(--accent2); color: #000; transform: translateY(-1px); }
     .btn-outline {
       border: 1px solid rgba(255,255,255,.15);
       background: rgba(255,255,255,.05);
@@ -268,20 +294,18 @@
       background: var(--surface);
       overflow: hidden;
       cursor: pointer;
-      transition: transform .2s, border-color .2s;
-    }
-    .sport-card:hover { transform: translateY(-3px); border-color: rgba(245,200,66,.4); }
-    .sport-card-img {
+      transition: transform .2s, border-color .2s, box-shadow .2s;
       aspect-ratio: 1;
-      overflow: hidden;
+    }
+    .sport-card:hover {
+      transform: translateY(-4px) scale(1.03);
+      border-color: rgba(232,0,13,0.5);
+      box-shadow: 0 8px 28px rgba(232,0,13,0.18);
+    }
+    .sport-card-img {
+      width: 100%; height: 100%;
     }
     .sport-card-img img { width: 100%; height: 100%; object-fit: cover; }
-    .sport-card-name {
-      padding: .5rem .6rem;
-      font-size: .78rem; font-weight: 500;
-      color: var(--text-muted);
-      text-align: center;
-    }
 
     /* ─── BRANDS ─── */
     .brands-row {
@@ -519,9 +543,11 @@
     /* ─── FOOTER ─── */
     footer {
       border-top: 1px solid var(--border);
-      background: rgba(0,0,0,.4);
+      background: #030507;
       padding: 2.5rem 1rem;
       margin-top: 4rem;
+      position: relative;
+      z-index: 2;
     }
     .footer-inner {
       max-width: 72rem; margin: 0 auto;
@@ -613,14 +639,186 @@
       .img-stack .img-frame:last-child { transform: none; }
       .stat-item + .stat-item { border-left: none; border-top: 1px solid var(--border); }
     }
+
+    /* ═══════════════════════════════════════════
+       HERO TWO-COLUMN + SLIDER CARD STACK
+    ═══════════════════════════════════════════ */
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .hero-text { position: relative; z-index: 2; }
+
+    /* ── slider wrapper ── */
+    .hero-slider {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    /* ── card stage ── */
+    .slider-stage {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      height: 440px;
+      perspective: 1000px;
+    }
+
+    /* ── individual card ── */
+    .slide-card {
+      position: absolute;
+      inset: 0;
+      border-radius: 1.4rem;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      cursor: pointer;
+      transition:
+        transform 0.62s cubic-bezier(0.34,1.26,0.64,1),
+        opacity   0.55s ease,
+        box-shadow 0.4s ease;
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+    }
+    .slide-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .slide-card:hover img { transform: scale(1.04); }
+
+    /* card overlay removed — clean photo display */
+
+    /* slide labels removed */
+
+    /* card STATES: active / next / prev / hidden */
+    .slide-card[data-state="active"] {
+      transform: translateX(0) translateY(0) scale(1) rotateY(0deg);
+      opacity: 1;
+      z-index: 10;
+      box-shadow: 0 28px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(232,0,13,0.25);
+    }
+    .slide-card[data-state="next"] {
+      transform: translateX(52px) translateY(22px) scale(0.91) rotateY(-6deg);
+      opacity: 0.62;
+      z-index: 8;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+    }
+    .slide-card[data-state="next2"] {
+      transform: translateX(92px) translateY(40px) scale(0.83) rotateY(-11deg);
+      opacity: 0.38;
+      z-index: 6;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+    .slide-card[data-state="prev"] {
+      transform: translateX(-52px) translateY(22px) scale(0.91) rotateY(6deg);
+      opacity: 0.55;
+      z-index: 7;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.3);
+    }
+    .slide-card[data-state="hidden"] {
+      transform: translateX(0) translateY(60px) scale(0.78);
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ── nav arrows ── */
+    .slider-arrows {
+      display: flex;
+      gap: .75rem;
+      align-items: center;
+    }
+    .slider-arrow {
+      width: 2.4rem; height: 2.4rem;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font-size: 1.05rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, transform .15s;
+      backdrop-filter: blur(8px);
+    }
+    .slider-arrow:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.1);
+    }
+
+    /* ── dot indicators ── */
+    .slider-dots {
+      display: flex;
+      gap: .45rem;
+      align-items: center;
+    }
+    .slider-dot {
+      width: 6px; height: 6px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.22);
+      transition: width .3s ease, background .3s ease;
+      cursor: pointer;
+    }
+    .slider-dot.active {
+      width: 22px;
+      background: var(--accent);
+    }
+
+    /* ── counter ── */
+    .slider-counter {
+      font-size: .78rem;
+      color: var(--text-dim);
+      font-weight: 500;
+      letter-spacing: .06em;
+    }
+    .slider-counter span { color: var(--text-muted); }
+
+    /* ── progress bar ── */
+    .slider-progress {
+      width: 100%;
+      max-width: 400px;
+      height: 2px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .slider-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 999px;
+      transition: width 0.12s linear;
+    }
+
+    /* responsive */
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-slider { display: none; }
+    }
+    @media (min-width: 1025px) {
+      .hero h1 { font-size: clamp(2.8rem, 5vw, 5.5rem); }
+    }
   </style>
 </head>
 <body>
+<canvas id="sportsBg"></canvas>
 
 <!-- ═══════════════ NAVBAR ═══════════════ -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo">JK <span>Sports</span></a>
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-wrap">
+        <img class="nav-logo-img" src="JKSports-logo.png" alt="JK Sports Logo" />
+        JK <span>Sports</span>
+      </span>
+    </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#sports">Sports</a></li>
@@ -649,26 +847,55 @@
       alt="JK Sports Namakkal store" loading="eager" />
   </div>
   <div class="hero-content container">
-    <div class="tag fade-up">Authorized Yonex Dealer · Est. 2021</div>
-    <h1 class="fade-up" style="transition-delay:.1s">
-      Your <span class="accent-line">Game.</span><br>Our Gear.
-    </h1>
-    <p class="hero-sub fade-up" style="transition-delay:.2s">
-      Namakkal's trusted sports shop for equipment, apparel, and fully custom team jerseys since 2021.
-    </p>
-    <div class="hero-badges fade-up" style="transition-delay:.3s">
-      <span class="badge">🏅 Yonex Authorized</span>
-      <span class="badge">🎽 Custom Jerseys</span>
-      <span class="badge">⭐ 5-Star Rated</span>
-      <span class="badge">📍 Namakkal</span>
+
+    <!-- LEFT: text -->
+    <div class="hero-text">
+      <div class="tag fade-up">Authorized Yonex Dealer · Est. 2021</div>
+      <h1 class="fade-up" style="transition-delay:.1s">
+        Your <span class="accent-line">Game.</span><br>Our Gear.
+      </h1>
+      <p class="hero-sub fade-up" style="transition-delay:.2s">
+        Namakkal's trusted sports shop for equipment, apparel, and fully custom team jerseys since 2021.
+      </p>
+      <div class="hero-badges fade-up" style="transition-delay:.3s">
+        <span class="badge">🏅 Yonex Authorized</span>
+        <span class="badge">🎽 Custom Jerseys</span>
+        <span class="badge">⭐ 5-Star Rated</span>
+        <span class="badge">📍 Namakkal</span>
+      </div>
+      <div class="hero-btns fade-up" style="transition-delay:.4s">
+        <a href="https://wa.me/919786122444?text=Hi%20JK%20Sports%2C%20I%20want%20to%20check%20availability%20for%20sports%20gear" class="btn-primary">Check Availability</a>
+        <a href="#gallery" class="btn-outline">View Gallery</a>
+      </div>
+      <div class="hero-scroll fade-up" style="transition-delay:.5s">
+        <span>↓</span> <span>scroll to explore</span>
+      </div>
     </div>
-    <div class="hero-btns fade-up" style="transition-delay:.4s">
-      <a href="https://wa.me/919786122444?text=Hi%20JK%20Sports%2C%20I%20want%20to%20check%20availability%20for%20sports%20gear" class="btn-primary">Check Availability</a>
-      <a href="#gallery" class="btn-outline">View Gallery</a>
+
+    <!-- RIGHT: sliding photo card stack -->
+    <div class="hero-slider fade-up" style="transition-delay:.3s" id="heroSlider">
+      <div class="slider-stage" id="sliderStage">
+        <!-- cards injected by JS -->
+      </div>
+
+      <!-- progress bar -->
+      <div class="slider-progress" style="width:100%;max-width:400px;">
+        <div class="slider-progress-fill" id="sliderProgress" style="width:0%"></div>
+      </div>
+
+      <!-- controls row -->
+      <div style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:400px;">
+        <div class="slider-dots" id="sliderDots"></div>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="slider-counter"><span id="sliderCur">1</span> / <span id="sliderTotal">1</span></span>
+          <div class="slider-arrows">
+            <button class="slider-arrow" id="sliderPrev" aria-label="Previous">&#8592;</button>
+            <button class="slider-arrow" id="sliderNext" aria-label="Next">&#8594;</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="hero-scroll fade-up" style="transition-delay:.5s">
-      <span>↓</span> <span>scroll to explore</span>
-    </div>
+
   </div>
 </section>
 
@@ -941,20 +1168,48 @@
 <section class="page-section" id="contact" style="padding-bottom:2rem;">
   <div class="container">
     <div class="contact-box fade-up">
-      <h2 style="font-size:1.75rem;">Visit Us</h2>
-      <p style="margin-top:.75rem;color:var(--text-muted);">Periyanna Gounder Plaza, Poyyerikarai Road, Namakkal-637001</p>
-      <p style="margin-top:.35rem;color:var(--text-dim);font-size:.9rem;">Ground Floor, 65C5+6RM Periyanna Gounder Plazza, Poiyerrikarai Rd, S P Pudur, Thillaipuram, Namakkal, Tamil Nadu 637001</p>
+      <h2 style="font-size:1.75rem;">📍 Visit Us</h2>
+      <p style="margin-top:.75rem;color:var(--text-muted);">Periyanna Gounder Plaza, Poyyerikarai Road, Namakkal – 637001</p>
       <p style="margin-top:.35rem;color:var(--text-dim);font-size:.9rem;">Mon–Sat, 9:00 AM – 8:00 PM</p>
-      <iframe
-        title="JK Sports Namakkal Location Map"
-        src="https://www.google.com/maps?q=Ground+Floor,+65C5%2B6RM+Periyanna+Gounder+Plazza,+Poiyerrikarai+Rd,+S+P+Pudur,+Thillaipuram,+Namakkal,+Tamil+Nadu+637001&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+      <p style="margin-top:.5rem;font-size:1rem;color:var(--text);">📞 <a href="tel:+919786722444" style="color:var(--accent2);font-weight:600;">+91 97867 22444</a></p>
+
+      <!-- Two Maps Grid -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem;" class="maps-grid">
+        <div>
+          <p style="font-size:.82rem;font-weight:600;color:var(--accent);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em;">📍 Location 1 — Main Store</p>
+          <iframe
+            title="JK Sports Namakkal Location 1"
+            src="https://www.google.com/maps?q=Ground+Floor,+65C5%2B6RM+Periyanna+Gounder+Plazza,+Poiyerrikarai+Rd,+S+P+Pudur,+Thillaipuram,+Namakkal,+Tamil+Nadu+637001&output=embed"
+            style="width:100%;height:260px;border-radius:var(--radius-lg);border:1px solid var(--border);"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <a href="https://share.google/wps6ZycnuuxDHVY1b" target="_blank" rel="noreferrer" class="btn-route" style="display:inline-block;margin-top:.75rem;font-size:.82rem;">🗺 Get Route →</a>
+        </div>
+        <div>
+          <p style="font-size:.82rem;font-weight:600;color:var(--accent2);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em;">📍 Location 2 — Branch</p>
+          <iframe
+            title="JK Sports Namakkal Location 2"
+            src="https://www.google.com/maps?q=Namakkal,+Tamil+Nadu&output=embed"
+            style="width:100%;height:260px;border-radius:var(--radius-lg);border:1px solid var(--border);"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <a href="https://share.google/jt93bRV0QlLnMr0Dz" target="_blank" rel="noreferrer" class="btn-route" style="display:inline-block;margin-top:.75rem;font-size:.82rem;border-color:rgba(57,211,83,.4);background:rgba(57,211,83,.1);color:var(--accent2);">🗺 Get Route →</a>
+        </div>
+      </div>
+
+      <style>
+        @media (max-width: 640px) {
+          .maps-grid { grid-template-columns: 1fr !important; }
+        }
+      </style>
+
       <div class="contact-btns">
-        <a href="tel:+919786122444" class="btn-outline">📞 Call Us</a>
-        <a href="https://wa.me/919786122444?text=Hi%20JK%20Sports%2C%20I%20want%20to%20visit%20the%20store" class="btn-green">WhatsApp Us</a>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=Ground+Floor,+65C5%2B6RM+Periyanna+Gounder+Plazza,+Poiyerrikarai+Rd,+S+P+Pudur,+Thillaipuram,+Namakkal,+Tamil+Nadu+637001" target="_blank" rel="noreferrer" class="btn-route">Get Route</a>
+        <a href="tel:+919786722444" class="btn-outline">📞 Call Us</a>
+        <a href="https://wa.me/919786722444?text=Hi%20JK%20Sports%2C%20I%20want%20to%20visit%20the%20store" class="btn-green">WhatsApp Us</a>
+        <a href="https://share.google/wps6ZycnuuxDHVY1b" target="_blank" rel="noreferrer" class="btn-route">Get Route – Store 1</a>
+        <a href="https://share.google/jt93bRV0QlLnMr0Dz" target="_blank" rel="noreferrer" class="btn-route" style="border-color:rgba(57,211,83,.4);background:rgba(57,211,83,.1);color:var(--accent2);">Get Route – Store 2</a>
       </div>
     </div>
   </div>
@@ -987,9 +1242,8 @@
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2025 JK Sports Namakkal. All rights reserved.</span>
-    <span>Authorized Yonex Dealer</span>
+  <div class="footer-bottom" style="justify-content:center;text-align:center;">
+    <span>© 2026 JK Sports Namakkal. All rights reserved.</span>
   </div>
 </footer>
 
@@ -1006,18 +1260,168 @@
 </div>
 
 <script>
+  /* ═══════════════════════════════════════════
+     HERO SLIDER — 3D CARD STACK
+  ═══════════════════════════════════════════ */
+  (function () {
+    const slides = [
+      {
+        img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-xzgfv5zd2t.jpg',
+        name: 'Badminton', tag: 'Yonex Official'
+      },
+      {
+        img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-49qqqxm18m.jpg',
+        name: 'Cricket', tag: 'Full Kit'
+      },
+      {
+        img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-yonex-lfcz4wfcs4.jpg',
+        name: 'Sports Apparel', tag: 'Team Wear'
+      },
+      {
+        img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-sx2ilpgj5z.jpg',
+        name: 'Kabaddi', tag: 'All Gear'
+      },
+      {
+        img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-sswa0ninem.jpg',
+        name: 'Volleyball', tag: 'Equipment'
+      },
+      {
+        img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-k18t7b8t4m.jpg',
+        name: 'Custom Jerseys', tag: 'Made to Order'
+      },
+      {
+        img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-yonex-04zxd27huf.jpg',
+        name: 'Yonex Collection', tag: 'Premium'
+      },
+      {
+        img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-ywphv6kkzg.jpg',
+        name: 'Team Sports', tag: 'Bulk Orders'
+      },
+    ];
+
+    const stage      = document.getElementById('sliderStage');
+    const dotsEl     = document.getElementById('sliderDots');
+    const curEl      = document.getElementById('sliderCur');
+    const totalEl    = document.getElementById('sliderTotal');
+    const progressEl = document.getElementById('sliderProgress');
+    const prevBtn    = document.getElementById('sliderPrev');
+    const nextBtn    = document.getElementById('sliderNext');
+
+    if (!stage) return;
+
+    const N = slides.length;
+    totalEl.textContent = N;
+    let current = 0;
+    let timer, progressTimer, progressVal = 0;
+    const AUTO_INTERVAL = 3800; // ms per slide
+    const PROGRESS_STEP = 100 / (AUTO_INTERVAL / 60);
+
+    /* build cards */
+    const cards = slides.map((s, i) => {
+      const el = document.createElement('div');
+      el.className = 'slide-card';
+      el.innerHTML = `
+        <img src="${s.img}" alt="${s.name}" loading="${i < 2 ? 'eager' : 'lazy'}" />`;
+      el.addEventListener('click', () => {
+        if (el.dataset.state === 'next' || el.dataset.state === 'next2') advance(1);
+        else if (el.dataset.state === 'prev') advance(-1);
+      });
+      stage.appendChild(el);
+      return el;
+    });
+
+    /* build dots */
+    const dots = slides.map((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'slider-dot';
+      d.setAttribute('aria-label', `Slide ${i+1}`);
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+      return d;
+    });
+
+    function stateFor(i) {
+      const diff = ((i - current) % N + N) % N;
+      if (diff === 0) return 'active';
+      if (diff === 1) return 'next';
+      if (diff === 2) return 'next2';
+      if (diff === N - 1) return 'prev';
+      return 'hidden';
+    }
+
+    function render() {
+      cards.forEach((c, i) => c.dataset.state = stateFor(i));
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      curEl.textContent = current + 1;
+    }
+
+    function resetProgress() {
+      clearInterval(progressTimer);
+      progressVal = 0;
+      progressEl.style.transition = 'none';
+      progressEl.style.width = '0%';
+      requestAnimationFrame(() => {
+        progressEl.style.transition = 'width 0.12s linear';
+        progressTimer = setInterval(() => {
+          progressVal = Math.min(progressVal + PROGRESS_STEP, 100);
+          progressEl.style.width = progressVal + '%';
+        }, 60);
+      });
+    }
+
+    function advance(dir) {
+      current = ((current + dir) % N + N) % N;
+      render();
+      resetProgress();
+      clearInterval(timer);
+      timer = setInterval(() => advance(1), AUTO_INTERVAL);
+    }
+
+    function goTo(i) {
+      current = i;
+      render();
+      resetProgress();
+      clearInterval(timer);
+      timer = setInterval(() => advance(1), AUTO_INTERVAL);
+    }
+
+    prevBtn.addEventListener('click', () => advance(-1));
+    nextBtn.addEventListener('click', () => advance(1));
+
+    /* keyboard */
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') advance(1);
+      if (e.key === 'ArrowLeft')  advance(-1);
+    });
+
+    /* touch swipe */
+    let touchX = null;
+    stage.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend',   e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 40) advance(dx < 0 ? 1 : -1);
+      touchX = null;
+    });
+
+    /* init */
+    render();
+    resetProgress();
+    timer = setInterval(() => advance(1), AUTO_INTERVAL);
+  })();
+
   /* ─── DATA ─── */
   const sports = [
-    { name: 'Cricket',      img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-hn65ksaxy5-250.jpg' },
-    { name: 'Badminton',    img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-xzgfv5zd2t.jpg' },
-    { name: 'Football',     img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-yonex-lfcz4wfcs4.jpg' },
-    { name: 'Basketball',   img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-49qqqxm18m.jpg' },
-    { name: 'Volleyball',   img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-sswa0ninem.jpg' },
-    { name: 'Kabaddi',      img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-sx2ilpgj5z.jpg' },
-    { name: 'Athletics',    img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-ho421thi1a-250.jpg' },
-    { name: 'Fitness/Gym',  img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-uthpgg3eei.jpg' },
-    { name: 'Table Tennis', img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-o7b38v0zqp.jpg' },
-    { name: 'Chess/Carrom', img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-e33la66fwc-250.jpg' }
+    { name: 'Sports Store',   img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-hn65ksaxy5-250.jpg' },
+    { name: 'Badminton',      img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-xzgfv5zd2t.jpg' },
+    { name: 'Sports Apparel', img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-yonex-lfcz4wfcs4.jpg' },
+    { name: 'Cricket',        img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/jk-sports-namakkal-namakkal-ho-namakkal-sports-goods-dealers-49qqqxm18m.jpg' },
+    { name: 'Volleyball',     img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-sswa0ninem.jpg' },
+    { name: 'Kabaddi',        img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-sx2ilpgj5z.jpg' },
+    { name: 'Athletics',      img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-ho421thi1a-250.jpg' },
+    { name: 'Fitness / Gym',  img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-uthpgg3eei.jpg' },
+    { name: 'Table Tennis',   img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-o7b38v0zqp.jpg' },
+    { name: 'Chess / Carrom', img: 'https://images.jdmagicbox.com/comp/namakkal/b2/9999p4286.4286.210910111823.j4b2/catalogue/-e33la66fwc-250.jpg' }
   ];
 
   const gallery = [
@@ -1038,7 +1442,6 @@
     sportsGrid.innerHTML += `
       <div class="sport-card">
         <div class="sport-card-img"><img src="${s.img}" alt="${s.name}" loading="lazy" /></div>
-        <div class="sport-card-name">${s.name}</div>
       </div>`;
   });
 
@@ -1128,6 +1531,335 @@
     });
   }, { threshold: 0.5 });
   document.querySelectorAll('[data-target]').forEach(el => statObserver.observe(el));
+</script>
+<script>
+/* ══════════════════════════════════════════════
+   ANIMATED SPORTS BACKGROUND CANVAS
+   Draws floating, rotating sports icons:
+   cricket ball, badminton shuttlecock, football,
+   tennis ball, basketball, stumps, racket, trophy
+   ══════════════════════════════════════════════ */
+(function () {
+  const canvas = document.getElementById('sportsBg');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* ── colour palette ── */
+  const PALETTE = [
+    'rgba(232,0,13,',    // JK red
+    'rgba(57,211,83,',   // JK green
+    'rgba(255,255,255,', // white
+    'rgba(255,200,30,',  // gold
+    'rgba(80,160,255,',  // sky blue
+  ];
+
+  /* ── draw helpers ── */
+  function cricketBall(ctx, r, alpha, col) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    // ball
+    ctx.beginPath();
+    ctx.arc(0, 0, r, 0, Math.PI*2);
+    ctx.fillStyle = col + '0.9)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+    ctx.lineWidth = r * 0.07;
+    ctx.stroke();
+    // seam arcs
+    ctx.beginPath();
+    ctx.arc(0, 0, r * 0.55, 0.2, Math.PI - 0.2);
+    ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+    ctx.lineWidth = r * 0.09;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(0, 0, r * 0.55, Math.PI + 0.2, -0.2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function football(ctx, r, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    ctx.arc(0, 0, r, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(255,255,255,0.12)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    ctx.lineWidth = r * 0.07;
+    ctx.stroke();
+    // pentagon patches
+    const pts = 5;
+    for (let i = 0; i < pts; i++) {
+      const a = (i / pts) * Math.PI * 2 - Math.PI / 2;
+      ctx.beginPath();
+      ctx.arc(Math.cos(a) * r * 0.45, Math.sin(a) * r * 0.45, r * 0.22, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(30,30,30,0.55)';
+      ctx.fill();
+    }
+    ctx.beginPath();
+    ctx.arc(0, 0, r * 0.22, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(30,30,30,0.55)';
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function basketball(ctx, r, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    ctx.arc(0, 0, r, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(220,100,20,0.22)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(220,100,20,0.5)';
+    ctx.lineWidth = r * 0.08;
+    ctx.stroke();
+    // lines
+    [[0, -r, 0, r], [-r, 0, r, 0]].forEach(([x1,y1,x2,y2]) => {
+      ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2);
+      ctx.strokeStyle = 'rgba(255,140,40,0.35)';
+      ctx.lineWidth = r * 0.06; ctx.stroke();
+    });
+    ctx.beginPath();
+    ctx.arc(0, 0, r * 0.6, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255,140,40,0.2)';
+    ctx.lineWidth = r * 0.06; ctx.stroke();
+    ctx.restore();
+  }
+
+  function shuttlecock(ctx, r, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    const cork = r * 0.28;
+    // cork base
+    ctx.beginPath();
+    ctx.arc(0, r * 0.55, cork, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    ctx.fill();
+    // feather fan
+    const feathers = 10;
+    for (let i = 0; i < feathers; i++) {
+      const a = ((i / feathers) * Math.PI * 2) - Math.PI / 2;
+      const tip = r * 0.9;
+      ctx.beginPath();
+      ctx.moveTo(0, r * 0.55);
+      ctx.lineTo(Math.cos(a) * tip, Math.sin(a) * tip + r * 0.05);
+      ctx.strokeStyle = 'rgba(255,255,255,0.22)';
+      ctx.lineWidth = r * 0.07; ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function tennisball(ctx, r, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.beginPath();
+    ctx.arc(0, 0, r, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(160,220,30,0.18)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(180,240,50,0.35)';
+    ctx.lineWidth = r * 0.07; ctx.stroke();
+    // curved seam
+    ctx.beginPath();
+    ctx.arc(0, -r*0.3, r * 0.7, 0.4, Math.PI - 0.4);
+    ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    ctx.lineWidth = r * 0.08; ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(0, r*0.3, r * 0.7, Math.PI + 0.4, -0.4);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function trophy(ctx, r, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    const h = r * 1.5;
+    ctx.strokeStyle = 'rgba(255,200,30,0.35)';
+    ctx.lineWidth = r * 0.08;
+    // cup body
+    ctx.beginPath();
+    ctx.moveTo(-r * 0.7, -h * 0.5);
+    ctx.quadraticCurveTo(-r * 0.9, 0, -r * 0.5, h * 0.25);
+    ctx.lineTo(-r * 0.2, h * 0.35);
+    ctx.lineTo(-r * 0.2, h * 0.48);
+    ctx.lineTo( r * 0.2, h * 0.48);
+    ctx.lineTo( r * 0.2, h * 0.35);
+    ctx.lineTo( r * 0.5, h * 0.25);
+    ctx.quadraticCurveTo( r * 0.9, 0, r * 0.7, -h * 0.5);
+    ctx.closePath();
+    ctx.stroke();
+    // handles
+    ctx.beginPath();
+    ctx.arc(-r * 0.85, -h * 0.15, r * 0.2, Math.PI * 0.5, Math.PI * 1.5);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc( r * 0.85, -h * 0.15, r * 0.2, -Math.PI * 0.5, Math.PI * 0.5);
+    ctx.stroke();
+    // base
+    ctx.beginPath();
+    ctx.moveTo(-r * 0.35, h * 0.48);
+    ctx.lineTo(-r * 0.45, h * 0.6);
+    ctx.lineTo( r * 0.45, h * 0.6);
+    ctx.lineTo( r * 0.35, h * 0.48);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function badmintonRacket(ctx, r, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    const head = r * 0.75;
+    ctx.strokeStyle = 'rgba(57,211,83,0.3)';
+    ctx.lineWidth = r * 0.07;
+    // head oval
+    ctx.beginPath();
+    ctx.ellipse(0, -r * 0.4, head * 0.55, head, 0, 0, Math.PI*2);
+    ctx.stroke();
+    // strings grid
+    ctx.lineWidth = r * 0.03;
+    ctx.strokeStyle = 'rgba(57,211,83,0.15)';
+    for (let i = -3; i <= 3; i++) {
+      ctx.beginPath();
+      ctx.moveTo(i * head * 0.16, -r * 0.4 - head * 0.9);
+      ctx.lineTo(i * head * 0.16, -r * 0.4 + head * 0.9);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-head * 0.5, -r * 0.4 + i * head * 0.27);
+      ctx.lineTo( head * 0.5, -r * 0.4 + i * head * 0.27);
+      ctx.stroke();
+    }
+    // handle
+    ctx.lineWidth = r * 0.1;
+    ctx.strokeStyle = 'rgba(57,211,83,0.3)';
+    ctx.beginPath();
+    ctx.moveTo(0, -r * 0.4 + head);
+    ctx.lineTo(0,  r * 0.95);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function cricketStumps(ctx, r, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = 'rgba(255,200,30,0.28)';
+    ctx.lineWidth = r * 0.1;
+    const h = r * 1.6;
+    for (let i = -1; i <= 1; i++) {
+      ctx.beginPath();
+      ctx.moveTo(i * r * 0.35, -h * 0.5);
+      ctx.lineTo(i * r * 0.35,  h * 0.5);
+      ctx.stroke();
+    }
+    // bails
+    ctx.lineWidth = r * 0.07;
+    ctx.beginPath();
+    ctx.moveTo(-r * 0.5, -h * 0.5);
+    ctx.lineTo( r * 0.5, -h * 0.5);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  /* ── particle types ── */
+  const DRAWERS = [
+    (c, r, a) => cricketBall(c, r, a, 'rgba(220,30,20,'),
+    (c, r, a) => football(c, r, a),
+    (c, r, a) => basketball(c, r, a),
+    (c, r, a) => shuttlecock(c, r, a),
+    (c, r, a) => tennisball(c, r, a),
+    (c, r, a) => trophy(c, r, a),
+    (c, r, a) => badmintonRacket(c, r, a),
+    (c, r, a) => cricketStumps(c, r, a),
+  ];
+
+  /* ── particle class ── */
+  class SportParticle {
+    constructor() { this.reset(true); }
+    reset(initial) {
+      this.x     = Math.random() * canvas.width;
+      this.y     = initial ? Math.random() * canvas.height : canvas.height + 80;
+      this.r     = 14 + Math.random() * 28;
+      this.vx    = (Math.random() - 0.5) * 0.35;
+      this.vy    = -(0.18 + Math.random() * 0.32);
+      this.rot   = Math.random() * Math.PI * 2;
+      this.vrot  = (Math.random() - 0.5) * 0.012;
+      this.alpha = 0.06 + Math.random() * 0.11;
+      this.type  = Math.floor(Math.random() * DRAWERS.length);
+      this.pulse = Math.random() * Math.PI * 2;
+      this.pulseSpeed = 0.008 + Math.random() * 0.006;
+    }
+    update() {
+      this.x    += this.vx;
+      this.y    += this.vy;
+      this.rot  += this.vrot;
+      this.pulse += this.pulseSpeed;
+      if (this.y < -120) this.reset(false);
+      if (this.x < -80)  this.x = canvas.width + 80;
+      if (this.x > canvas.width + 80) this.x = -80;
+    }
+    draw(ctx) {
+      const a = this.alpha * (0.75 + 0.25 * Math.sin(this.pulse));
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rot);
+      DRAWERS[this.type](ctx, this.r, a);
+      ctx.restore();
+    }
+  }
+
+  /* spawn particles spread across screen */
+  const COUNT = Math.min(38, Math.floor((window.innerWidth * window.innerHeight) / 24000));
+  const particles = Array.from({ length: COUNT }, () => new SportParticle());
+
+  /* ── main render loop ── */
+  function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    /* deep dark gradient base */
+    const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    grad.addColorStop(0,   '#060a0f');
+    grad.addColorStop(0.35,'#080e15');
+    grad.addColorStop(0.7, '#060c10');
+    grad.addColorStop(1,   '#04080c');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    /* subtle vignette radials */
+    const vgRed = ctx.createRadialGradient(0, 0, 0, 0, 0, canvas.width * 0.65);
+    vgRed.addColorStop(0,   'rgba(232,0,13,0.055)');
+    vgRed.addColorStop(1,   'transparent');
+    ctx.fillStyle = vgRed;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const vgGreen = ctx.createRadialGradient(canvas.width, canvas.height, 0, canvas.width, canvas.height, canvas.width * 0.55);
+    vgGreen.addColorStop(0,  'rgba(57,211,83,0.045)');
+    vgGreen.addColorStop(1,  'transparent');
+    ctx.fillStyle = vgGreen;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    /* diagonal thin lines (field lines feel) */
+    ctx.save();
+    ctx.strokeStyle = 'rgba(255,255,255,0.022)';
+    ctx.lineWidth = 1;
+    for (let i = -canvas.height; i < canvas.width + canvas.height; i += 72) {
+      ctx.beginPath();
+      ctx.moveTo(i, 0);
+      ctx.lineTo(i + canvas.height, canvas.height);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    particles.forEach(p => { p.update(); p.draw(ctx); });
+
+    requestAnimationFrame(render);
+  }
+
+  render();
+})();
 </script>
 </body>
 </html>
